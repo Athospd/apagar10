@@ -6,7 +6,7 @@ COPY . .
 
 RUN Rscript -e "install.packages('plumber')"
 
-EXPOSE 8000
+EXPOSE 8080
 
 #---------------------o que vai rodar quando o container for criado------------#
 
