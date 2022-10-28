@@ -4,7 +4,7 @@ FROM rocker/r-ver:4.1.1
 COPY teste.R teste2.R
 COPY . .
 
-RUN Rscript -e "install.packages('plumber')"
+RUN Rscript -e "install.packages(c('plumber', 'AzureStor'))"
 
 EXPOSE 8080
 
