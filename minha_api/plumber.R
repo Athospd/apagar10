@@ -12,6 +12,17 @@ library(plumber)
 #* @apiTitle Plumber Example API
 #* @apiDescription Plumber example description.
 
+#* @get /env
+env <- function(key = NULL) {
+  as.list(Sys.getenv(key))
+}
+
+#* @get /nasa
+env <- function() {
+  as.list(Sys.getenv("NASA_KEY"))
+}
+
+
 #* Echo back the input
 #* @param msg The message to echo
 #* @get /echo
