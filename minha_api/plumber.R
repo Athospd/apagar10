@@ -8,6 +8,9 @@
 #
 
 library(plumber)
+library(AzureStor)
+f = glue::glue
+
 
 #* @apiTitle Plumber Example API
 #* @apiDescription Plumber example description.
@@ -21,6 +24,20 @@ env <- function(key = NULL) {
 env <- function() {
   as.list(Sys.getenv("NASA_KEY"))
 }
+
+
+#* @get /mtcars
+env <- function() {
+  blob_con = blob_endpoint(
+    endpoint = f("https://asnrocksstorage.blob.core.windows.net/"),
+    key = Sys.getenv('STORAGE_ACCOUNT_KEY')
+  )
+
+  container_client = blob_container(blob_con, name = "data")
+  storage_read_csv(container_client, "mtcars.csv")
+}
+
+
 
 
 #* Echo back the input
